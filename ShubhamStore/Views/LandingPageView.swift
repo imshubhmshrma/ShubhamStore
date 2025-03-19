@@ -30,10 +30,9 @@ struct LandingPageView: View {
                 case .loginScreen:
                     LoginView()
                 case .dashboardScreen:
-                    DashboardScreen(coreDM: CoreDataManager())
+                    DashboardScreen()
                 }
             }
-            
         }
         .onAppear{
             self.isUserLoggedIn = UserSessionManagement.shared.userLoginInStatus()

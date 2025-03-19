@@ -10,7 +10,8 @@ import SwiftUI
 struct ProductDetail: View{
     
     let product : Product
-    let coreDM : CoreDataManager
+    //   let coreDM : CoreDataManager
+    @StateObject var cartVM : CartViewModel = CartViewModel()
     @State private var isProductAddedToCart: Bool = false
     
     var body : some View {
@@ -33,7 +34,7 @@ struct ProductDetail: View{
                             print(
                                 "user tapped on Add to cart"
                             )
-                            coreDM.addToCart(product: self.product)
+                            self.cartVM.addToCart(product: self.product, quantity: 1)
                             self.isProductAddedToCart = true
                         }
                         .foregroundColor(Color.white)
@@ -50,22 +51,19 @@ struct ProductDetail: View{
                                 .foregroundColor(Color.theme.greenColor)
                         }
                     }
-                    
                 }
             }
         }
         .tint(.theme.greenColor )
         .navigationTitle(product.title ?? "Product Detail")
         .navigationViewStyle(.stack)
-        
-        
     }
 }
 
 
 struct ProductDetail_PreviewProvider : PreviewProvider {
     static var previews : some View {
-        ProductDetail(product: Product(id: 2, title: "Mens Casual Premium Slim Fit T-Shirts ", price: 999.0, description: "Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.", category: Category(rawValue: "men's clothing"), image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg", rating: Rating(rate: 3.4, count: 4763)), coreDM: CoreDataManager())
+        ProductDetail(product: Product(id: 2, title: "Mens Casual Premium Slim Fit T-Shirts ", price: 999.0, description: "Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.", category: Category(rawValue: "men's clothing"), image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg", rating: Rating(rate: 3.4, count: 4763)))
             .previewLayout(.sizeThatFits)
             .previewDevice("iPhone 14 Pro")
     }

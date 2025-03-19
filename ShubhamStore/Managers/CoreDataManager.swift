@@ -22,10 +22,16 @@ class CoreDataManager {
     }
     
     
-    func addToCart(product : Product) {
+    func addToCart(product : Product, quantity : Int) {
         print("Product to save to cart 👉🏻 ",product)
         let cartProduct = CartProduct(context: persistantContainer.viewContext)
+        cartProduct.id = String(product.id!)
         cartProduct.name = product.title
+        cartProduct.image = product.image
+        cartProduct.price = product.price!
+        cartProduct.quantity = String(quantity)
+        
+        
         do {
             try persistantContainer.viewContext.save()
             print("Product Saved to cart")
@@ -41,7 +47,7 @@ class CoreDataManager {
         do {
           let cProduct =  try persistantContainer.viewContext.fetch(fetchRequest)
            _ = cProduct.map { product in
-               let product =  Product(id: 0, title: product.name, price: 0.00, description: "", category: Category(rawValue: ""), image: "", rating: Rating(rate: 1.3, count: 3))
+               let product =  Product(id: Int(product.id!), title: product.name, price: product.price, description: product.description, category: Category(rawValue: ""), image: "", rating: Rating(rate: 0.0, count: 0))
                productsToReturn.append(product)
             }
             return productsToReturn
@@ -49,4 +55,52 @@ class CoreDataManager {
             return []
         }
     }
+    
+    
+    func deleteAllCartProducts() {
+        print("deleteAllCartProducts ")
+        let fetchRequest : NSFetchRequest<CartProduct> = CartProduct.fetchRequest()
+        guard let cProduct =  try? persistantContainer.viewContext.fetch(fetchRequest) else { return }
+        
+        // List of multiple objects to delete
+        let objects: [NSManagedObject] = cProduct// A list of objects
+
+        // Get a reference to a managed object context
+        let context = persistantContainer.viewContext
+
+        // Delete multiple objects
+        for object in objects {
+            context.delete(object)
+        }
+
+        // Save the deletions to the persistent store
+        try? context.save()
+    }
+    
+    func deleteCartItem(product : Product) -> Bool {
+        print("id is ",product)
+        guard let productItem = getItemBy(id: String(product.id!)) else { return false }
+        
+        persistantContainer.viewContext.delete(productItem)
+        try? persistantContainer.viewContext.save()
+        
+        return true
+    }
+ 
+    private func getItemBy(id: String) -> CartProduct? {
+
+           let fetchRequest : NSFetchRequest<CartProduct> = CartProduct.fetchRequest()
+           fetchRequest.predicate = NSPredicate(format: "id == %@", id)
+
+           do {
+               let productItem = try persistantContainer.viewContext.fetch(fetchRequest).first
+
+               return productItem
+
+           } catch let error {
+               debugPrint(error)
+           }
+
+           return nil
+       }
 }

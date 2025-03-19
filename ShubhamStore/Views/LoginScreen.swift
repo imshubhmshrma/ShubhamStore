@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct LoginView: View{
+    
     @State private var txtEmail: String = ""
     @State private var txtPassword: String = ""
     @State private var isProgressViewHidden: Bool = true
@@ -92,11 +93,9 @@ struct LoginView: View{
                 .font(.headline)
             }.disabled(txtEmail.isEmpty || txtPassword.isEmpty)
                 .accessibility(identifier: "login_page_login_btn")
-            
-            
         }
         .navigationDestination(isPresented: $showDashboard) {
-            DashboardScreen(coreDM: CoreDataManager())
+            DashboardScreen()
         }
         .navigationBarBackButtonHidden()
         .padding(.all)

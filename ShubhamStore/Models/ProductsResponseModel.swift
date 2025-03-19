@@ -5,7 +5,8 @@
 //  Created by Shubham Sharma on 21/02/25.
 //
 
-struct Product: Codable, Identifiable {
+struct Product: Codable, Identifiable, Hashable {
+    
     let id: Int?
     let title: String?
     let price: Double?
@@ -13,6 +14,10 @@ struct Product: Codable, Identifiable {
     let category: Category?
     let image: String?
     let rating: Rating?
+    
+    static func == (lhs: Product, rhs: Product) -> Bool {
+        return lhs.id == rhs.id
+    }
 }
 
 enum Category: String, Codable {
@@ -23,7 +28,7 @@ enum Category: String, Codable {
 }
 
 // MARK: - Rating
-struct Rating: Codable {
+struct Rating: Codable, Hashable {
     let rate: Double?
     let count: Int?
 }
