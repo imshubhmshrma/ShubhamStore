@@ -9,32 +9,31 @@ import SwiftUI
 
 class CartViewModel : ObservableObject {
     
-    var coreDataManager : CoreDataManager!
+    // var coreDataManager : CoreDataManager!
     
-//    var productArr: [Product] {
-//        coreDataManager.fetchCartProducts()
-//    }
+    //    var productArr: [Product] {
+    //        coreDataManager.fetchCartProducts()
+    //    }
     
-   @Published var productArr: [Product] = []
+    @Published  var productArr: [Product] = []
     
     init() {
-        self.coreDataManager = CoreDataManager()
-        self.productArr = coreDataManager.fetchCartProducts()
+        self.productArr = PersistenceController.shared.fetchCartProducts()
     }
     
     func addToCart(product : Product, quantity: Int) {
-        self.coreDataManager.addToCart(product: product, quantity: quantity)
+        PersistenceController.shared.addToCart(product: product, quantity: quantity)
     }
     
     func emptyCart() {
-        self.coreDataManager.deleteAllCartProducts()
+        PersistenceController.shared.deleteAllCartProducts()
     }
     
     func deleteCartItem(product : Product) {
-       let deleteStatus = self.coreDataManager.deleteCartItem(product: product)
+        let deleteStatus =  PersistenceController.shared.deleteCartItem(product: product)
         print("⚠️⚠️ deleteStatus == \(deleteStatus)")
         if deleteStatus == true{
-            self.productArr = coreDataManager.fetchCartProducts()
+            self.productArr =  PersistenceController.shared.fetchCartProducts()
         }
     }
     

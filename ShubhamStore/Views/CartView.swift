@@ -13,15 +13,19 @@ struct CartView : View {
     
     var body : some View {
         List{
-            ForEach(cartVM.productArr, id : \.self) { cartItem in
-                
+            ForEach(cartVM.productArr, id : \.self) { cartItem in 
                 HStack{
-                    ProductDetailImageView(imageURL: cartItem.image!)
-                        .frame(width: 80, height: 80)
+                    Image(systemName: "photo")
+                            .font(.largeTitle)
+                        .frame(width: 90, height: 90)
+                        .clipShape(RoundedRectangle(cornerRadius: 16))
                     VStack(alignment: .leading) {
                         Text(cartItem.title!)
+                            .font(.headline)
                         Text((cartItem.price?.asCurrencyWith6Decimal())!)
+                            .font(.subheadline)
                     }
+                    Spacer()
                     VStack(alignment: .trailing) {
                         Button(action: {
                             self.cartVM.deleteCartItem(product: cartItem)
@@ -34,6 +38,7 @@ struct CartView : View {
                         })
                     }
                 }
+                .listRowSeparatorTint(.theme.greenColor)
             }
         }
         .navigationTitle("Cart")
@@ -47,17 +52,14 @@ struct CartView : View {
                 }
             }
         }
-        .onAppear{
-            // print(cartVM.productArr.count)
-        }
     }
 }
 
 
 
-//struct CartView_PreviewProvider : PreviewProvider {
-//    
-//    static var previews : some View {
-//        CartView()
-//    }
-//}
+struct CartView_PreviewProvider : PreviewProvider {
+    
+    static var previews : some View {
+        CartView()
+    }
+}

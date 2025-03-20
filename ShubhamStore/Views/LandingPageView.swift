@@ -11,7 +11,6 @@ struct LandingPageView: View {
     
     @State private var path: [Route] = []
     @State private var isUserLoggedIn : Bool = false
-    let coreDataManager : CoreDataManager
     
     var body: some View {
         
@@ -55,5 +54,5 @@ struct LandingPageView: View {
 }
 
 #Preview {
-    LandingPageView(coreDataManager:  CoreDataManager())
+    LandingPageView()
 }

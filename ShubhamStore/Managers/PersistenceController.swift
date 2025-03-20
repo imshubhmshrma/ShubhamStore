@@ -7,16 +7,19 @@
 
 import Foundation
 import CoreData
-
-class CoreDataManager {
+ 
+class PersistenceController : ObservableObject {
     
-    let persistantContainer : NSPersistentContainer
+   let persistantContainer = NSPersistentContainer(name: "Cart")
     
-    init() {
-        self.persistantContainer = NSPersistentContainer(name: "Cart")
+   static let shared = PersistenceController()
+     
+    
+   private init() {
         self.persistantContainer.loadPersistentStores { description, error in
             if let error = error {
-                fatalError("Core Data Failed to initialize  \(error.localizedDescription)")
+                print("Core Data Failed to initialize  \(error.localizedDescription)")
+               // fatalError("Core Data Failed to initialize  \(error.localizedDescription)")
             }
         }
     }
@@ -104,3 +107,4 @@ class CoreDataManager {
            return nil
        }
 }
+ 

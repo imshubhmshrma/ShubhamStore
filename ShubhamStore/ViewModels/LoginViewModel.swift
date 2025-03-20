@@ -14,7 +14,7 @@ class LoginViewModel : ObservableObject{
                   completion: @escaping (LoginResponseModel) -> Void) {
             LoginService.shared.hitLoginApi("", "", completion: { response in
                 completion(response)
-            })
+        })
     }
     
 }

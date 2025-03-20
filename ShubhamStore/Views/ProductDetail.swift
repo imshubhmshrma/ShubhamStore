@@ -25,11 +25,11 @@ struct ProductDetail: View{
                     VStack(alignment: .leading) {
                         Text(product.title!)
                             .font(.headline)
-                            .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
+                          //.padding(EdgeInsets(top: 0, leading: 4, bottom: 0, trailing: 4))
                         Text("\(product.price!.asCurrencyWith6Decimal())")
                             .font(.headline)
                             .foregroundColor(Color.theme.greenColor)
-                            .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
+                         //   .padding(EdgeInsets(top: 0, leading: 4, bottom: 0, trailing: 4))
                         Button("Add To Cart") {
                             print(
                                 "user tapped on Add to cart"
@@ -50,6 +50,7 @@ struct ProductDetail: View{
                                 .font(.headline)
                                 .foregroundColor(Color.theme.greenColor)
                         }
+                       
                     }
                 }
             }
@@ -89,6 +90,7 @@ struct ProductDetailImageView: View {
             default: ProgressView()
             }
         }
+        .frame(width: UIScreen.main.bounds.width - 8,height: UIScreen.main.bounds.height/1.5)
         //.frame(width: .infinity, height: 300)
         .padding()
     }

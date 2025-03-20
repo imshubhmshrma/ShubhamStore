@@ -64,7 +64,7 @@ struct DashboardScreen : View {
             }
             .toolbar{
                 ToolbarItem{
-                    Button { 
+                    Button {
                         self.navigateToCartPage = true
                     } label: {
                         Image(systemName: "cart")
