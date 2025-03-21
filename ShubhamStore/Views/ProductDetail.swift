@@ -25,11 +25,11 @@ struct ProductDetail: View{
                     VStack(alignment: .leading) {
                         Text(product.title!)
                             .font(.headline)
-                          //.padding(EdgeInsets(top: 0, leading: 4, bottom: 0, trailing: 4))
+                          .padding(EdgeInsets(top: 0, leading: 4, bottom: 0, trailing: 4))
                         Text("\(product.price!.asCurrencyWith6Decimal())")
                             .font(.headline)
                             .foregroundColor(Color.theme.greenColor)
-                         //   .padding(EdgeInsets(top: 0, leading: 4, bottom: 0, trailing: 4))
+                           .padding(EdgeInsets(top: 0, leading: 4, bottom: 0, trailing: 4))
                         Button("Add To Cart") {
                             print(
                                 "user tapped on Add to cart"
