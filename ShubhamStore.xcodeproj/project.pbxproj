@@ -12,6 +12,9 @@
 		5120F4702DA41B3B00E79C47 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 5120F46F2DA41B3B00E79C47 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		5120F4722DA41B3B00E79C47 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 5120F4712DA41B3B00E79C47 /* FirebaseAppCheck */; };
 		5120F4742DA41B3B00E79C47 /* FirebaseAppDistribution-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 5120F4732DA41B3B00E79C47 /* FirebaseAppDistribution-Beta */; };
+		517B143E2DA55A58002ADEE6 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 517B143D2DA55A58002ADEE6 /* FirebaseStorage */; };
+		517B14402DA55BB0002ADEE6 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 517B143F2DA55BB0002ADEE6 /* FirebaseCore */; };
+		517B14422DA55BB0002ADEE6 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 517B14412DA55BB0002ADEE6 /* FirebaseFirestore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,7 +80,10 @@
 				5120F46C2DA41B3B00E79C47 /* FirebaseAnalytics in Frameworks */,
 				5120F4742DA41B3B00E79C47 /* FirebaseAppDistribution-Beta in Frameworks */,
 				5120F4702DA41B3B00E79C47 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
+				517B14402DA55BB0002ADEE6 /* FirebaseCore in Frameworks */,
+				517B14422DA55BB0002ADEE6 /* FirebaseFirestore in Frameworks */,
 				5120F46E2DA41B3B00E79C47 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
+				517B143E2DA55A58002ADEE6 /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,6 +149,9 @@
 				5120F46F2DA41B3B00E79C47 /* FirebaseAnalyticsWithoutAdIdSupport */,
 				5120F4712DA41B3B00E79C47 /* FirebaseAppCheck */,
 				5120F4732DA41B3B00E79C47 /* FirebaseAppDistribution-Beta */,
+				517B143D2DA55A58002ADEE6 /* FirebaseStorage */,
+				517B143F2DA55BB0002ADEE6 /* FirebaseCore */,
+				517B14412DA55BB0002ADEE6 /* FirebaseFirestore */,
 			);
 			productName = ShubhamStore;
 			productReference = 51F89BFC2D6376AA00B5CFC1 /* ShubhamStore.app */;
@@ -623,6 +632,18 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5120F46A2DA41B3B00E79C47 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseAppDistribution-Beta";
+		};
+		517B143D2DA55A58002ADEE6 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FirebaseStorage;
+		};
+		517B143F2DA55BB0002ADEE6 /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FirebaseCore;
+		};
+		517B14412DA55BB0002ADEE6 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FirebaseFirestore;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

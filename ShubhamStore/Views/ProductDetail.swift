@@ -5,6 +5,7 @@
 //  Created by Shubham Sharma on 24/02/25.
 //
 import SwiftUI
+import Firebase
 
 struct ProductDetail: View{
     
@@ -12,6 +13,7 @@ struct ProductDetail: View{
     //   let coreDM : CoreDataManager
     @StateObject var cartVM : CartViewModel = CartViewModel()
     @State private var isProductAddedToCart: Bool = false
+    @StateObject private var firestoreManager = FirestoreManager()
     
     var body : some View {
         
@@ -29,12 +31,13 @@ struct ProductDetail: View{
                             .font(.headline)
                             .foregroundColor(Color.theme.greenColor)
                            .padding(EdgeInsets(top: 0, leading: 4, bottom: 0, trailing: 4))
-                        Button("Add To Cart") {
+                        Button("Add To Cart"){
                             print(
                                 "user tapped on Add to cart"
                             )
                             self.cartVM.addToCart(product: self.product, quantity: 1)
                             self.isProductAddedToCart = true
+                            firestoreManager.addToCart(product: self.product, quantity: 1)
                         }
                         .foregroundColor(Color.white)
                         .padding()
@@ -57,6 +60,21 @@ struct ProductDetail: View{
         .tint(.theme.greenColor )
         .navigationTitle(product.title ?? "Product Detail")
         .navigationViewStyle(.stack)
+    }
+    
+    func addToCart() async {
+        print("I am in add to cart function")
+        let db = Firestore.firestore()
+        do {
+          let ref = try await db.collection("users").addDocument(data: [
+            "first": "Ada",
+            "last": "Lovelace",
+            "born": 1815
+          ])
+          print("Document added with ID: \(ref.documentID)")
+        } catch {
+          print("Error adding document: \(error)")
+        }
     }
 }
 
